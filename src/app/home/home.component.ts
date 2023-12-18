@@ -1113,11 +1113,14 @@ isFavoriteImages: { [id: string]: boolean } = {};
   
 
   ngOnInit(): void {
+    // Subscribe over my route to make the html page render the cards again in case of new reciepes in search
     this.activatedRoute.queryParams.subscribe(params => {
         this.searchParam = params['searchQuery'] || ''; // Default to an empty string if not present
-        // Handle the searchQuery parameter as needed
-        console.log(this.searchParam);
+        
+        // variable to collect all ids to retrive their info using bulk api
         let recipeIDS="";
+
+        // Subscribe to the search by recipes api
         this.homeRecipeService.searchByRecipe(this.searchParam).subscribe((data: any) => {
           this.recipes = data.results;
         
@@ -1132,6 +1135,8 @@ isFavoriteImages: { [id: string]: boolean } = {};
             recipeIDS = recipeIDS.slice(0, -1);
           }
           
+          
+          // retrieve all recipes info using bulk api
           this.homeRecipeService.getRecipeInformation(recipeIDS).subscribe((recipeinfo:any)=>{
             this.recipeInformation =recipeinfo;
             for (const recipeinfo of this.recipeInformation) {
@@ -1143,17 +1148,18 @@ isFavoriteImages: { [id: string]: boolean } = {};
              }
         
           });
-          console.log(this.recipes);
+          // console.log(this.recipes);
           
-        
-          console.log(this.recipeDictionary);
+          // retrieve stored recipes in local storage to be able to mark them again as favs
+          this.retrieveStoredData();
+          // console.log(this.recipeDictionary);
         });
         
-            console.log(this.searchParam);
+            // console.log(this.searchParam);
       });
 
     
-    this.retrieveStoredData();
+    
       // console.log(this.recipes);
       
   
@@ -1162,6 +1168,9 @@ isFavoriteImages: { [id: string]: boolean } = {};
 
     
   }
+
+
+  // toggle function to toggle each card to love or not loved
   toggleFavorite(id: any): void {
     // console.log("inside favorite function");
 
@@ -1173,28 +1182,30 @@ isFavoriteImages: { [id: string]: boolean } = {};
     this.updateStoredData();
   }
 
+
+  // function to retrieve stroed favs from local storage
   private retrieveStoredData(): void {
+    // in local storage we saved the favs in 2 collections
+    // one for the ids to be able to chekc easily wheater the favs existed or not to mark their cards
+    // and the other to save the card data instead of calling apis again to retrieve its info (reduce api calls and increase perf)
     const storedData = localStorage.getItem('mySetKey');
-    if (storedData) {
+    const storedId =localStorage.getItem('myIDKey');
+    if (storedData && storedId ) {
       // If data exists, parse it and update the isFavoriteImages object
       const storedSet = new Set<string>(JSON.parse(storedData));
-
+      console.log(storedSet);
+      const storedIdSet = new Set<string>(JSON.parse(storedId));
       this.recipes.forEach(recipe => {
-        this.isFavoriteImages[recipe.id] = storedSet.has(JSON.stringify({recipeId:recipe.id,
-        recipeImage:recipe.image,
-        recipeTitle:recipe.title,
-        recipeDescription:this.recipeDictionary[recipe.id]?.recipeDescription,
-        recipeTime:this.recipeDictionary[recipe.id]?.recipeTime,
-        recipeLikes:this.recipeDictionary[recipe.id]?.recipeLikes  
-      }));
-       
+      this.isFavoriteImages[recipe.id] =storedIdSet.has(recipe.id);
       });
     }
   }
 
+  // update the sotred data in local storage
   private updateStoredData(): void {
     // Update the stored data in local storage
     const mySet = new Set<string>();
+    const mySetId = new Set<string>();
     this.recipes.forEach(recipe => {
       if (this.isFavoriteImages[recipe.id]) {
        
@@ -1205,10 +1216,12 @@ isFavoriteImages: { [id: string]: boolean } = {};
         recipeTime:this.recipeDictionary[recipe.id]?.recipeTime,
         recipeLikes:this.recipeDictionary[recipe.id]?.recipeLikes  
       }));
+      mySetId.add(recipe.id);
         
       }
     });
     localStorage.setItem('mySetKey', JSON.stringify(Array.from(mySet)));
+    localStorage.setItem('myIDKey', JSON.stringify(Array.from( mySetId)));
   }
   
   
