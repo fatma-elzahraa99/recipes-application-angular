@@ -10,7 +10,7 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrl: './search.component.css'
 })
 export class SearchComponent {
-// @Output() searchParam = new EventEmitter<string>();
+
 searchQuery: string = '';
 
 recipes: any[] =[];
@@ -1115,42 +1115,11 @@ recipeInformation :any[]=[];
   }
  
   search(f:NgForm) {
-    //  console.log(this.searchQuery);
-     console.log(f.value.searchInput);
-    // this.searchParam.emit(f.value.searchInput);
-    // this.router.navigate(['/recipes',{searchQuery:f.value.searchInput}]);
+   
+    //  console.log(f.value.searchInput);
+    
     this.router.navigate(['recipes'], { queryParams: { searchQuery: f.value.searchInput }});
-    // let recipeIDS="";
-    // this.homeRecipeService.searchByRecipe(this.searchQuery).subscribe((data: any) => {
-    //   this.recipes = data.results;
-  
-    //   // Loop through each recipe and fetch additional information
-    //   for (const recipe of this.recipes) {
-    //     recipeIDS += recipe.id;
-    //     recipeIDS += ",";
-    //   }
-      
-    //   // Remove the trailing comma
-    //   if (recipeIDS.length > 0) {
-    //     recipeIDS = recipeIDS.slice(0, -1);
-    //   }
-      
-    //   this.homeRecipeService.getRecipeInformation(recipeIDS).subscribe((recipeinfo:any)=>{
-    //     this.recipeInformation =recipeinfo;
-    //     for (const recipeinfo of this.recipeInformation) {
-    //       this.recipeDictionary[recipeinfo.id]={
-    //        "recipeDescription":recipeinfo.summary,
-    //        "recipeTime":recipeinfo.readyInMinutes,
-    //        "recipeLikes":recipeinfo.aggregateLikes
-    //       }
-    //      }
-  
-    //   });
-    //   console.log(this.recipes);
-      
-  
-    //   console.log(this.recipeDictionary);
-    // });
+    
   }
 
   

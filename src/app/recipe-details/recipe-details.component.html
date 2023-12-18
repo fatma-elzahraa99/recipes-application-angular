@@ -20,10 +20,13 @@
     </div>
   </div>
 <div class="instructions">
+  
   <span>Instructions</span>
   <ol>
-    <li *ngFor="let instruction of recipeInfo.instructions.split('.')">
-    <ng-container *ngIf="instruction.trim() != '' "> {{ instruction.trim() }}</ng-container>
+    <li *ngFor="let instruction of recipeInfo.instructions.split('.') ">
+      <ng-container *ngIf="instruction.trim() != '' ">
+        <p>{{ sanitizeHtml(instruction.trim()) }}</p>
+      </ng-container>
     </li>
   </ol>
 </div>

@@ -7,9 +7,9 @@ import { Injectable } from '@angular/core';
 export class HomeRecipeService {
 
   private apiUrl = 'https://api.spoonacular.com';
-  private apiKey = '6ee75a6b5daa4b4da22e670f9e694315'; 
+  private apiKey = '89be57079aff406a8fb15767668c9867'; 
   
-  private number=99;
+  private number=10;
   private page=1;
   private offset=(this.page-1)*this.number;
 

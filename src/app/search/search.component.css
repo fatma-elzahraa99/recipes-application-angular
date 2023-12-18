@@ -5,14 +5,8 @@
     position: relative;
   }
   #search-button{
-    /*background-color:#595959;
-    border-radius:90%;
-    width:50%;
-    height:26px;
-    border:1px solid #626262;
-    color:white;
-    font-family: Cursive;*/
-    width: 55px; /* Set the desired width */
+   
+    width: 68px; /* Set the desired width */
     height: 30px; /* Set the desired height */
     border-radius: 15px; /* Set half of the height to create an oval shape */
     background-color: #595959; /* Set the background color */
