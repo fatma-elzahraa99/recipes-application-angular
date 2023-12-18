@@ -1,0 +1,8 @@
+
+<div class="search-bar">
+    <form #f="ngForm" (ngSubmit)="search(f)" novalidate>
+        <img src="assets/images/search.png" alt="Recipes Logo">
+        <input  id="search-input" type="text" placeholder="Search..."  name="searchInput" ngModel required #searchInput="ngModel">
+        <button id="search-button">Search</button>
+      </form>
+</div>

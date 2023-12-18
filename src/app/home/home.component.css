@@ -1,0 +1,103 @@
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 5;
+  background-color: #dfe48f;
+}
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  justify-content: center;
+  width: 80%;
+  margin-top:2%
+  
+}
+
+.recipe-card {
+  border: 1px solid rgba(255, 166, 0, 0.729);
+  border-radius: 5%;
+  position: relative;
+  left:40%;
+  text-align: center;
+  width:100%
+}
+
+.recipe-image {
+  width: 100%;
+  height: 60%;
+  border-radius: 5%;
+  
+  
+}
+
+#recipe-title{
+    text-align: start;
+    font-size:15px;
+    
+    font-weight: bold;
+    color:#f08547;
+    margin-left:3%;
+    max-width: 342px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+#recipe-description{
+    text-align: start;
+    color: #9a9b9d;
+    font-size: 12px;
+    margin-left: 3%;
+    max-width: 351px;
+    white-space: pre-wrap;
+    overflow: hidden;
+    max-height: 56px; 
+}
+#separator{
+    width:90%;
+    margin-bottom:-12%;
+    border: 1px solid #dfe9f8;
+
+}
+.container{
+    display: flex;
+    margin-left:10px;
+}
+#clock-icon, #like-icon  {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    margin-bottom: -31%;
+   
+    
+    
+  }
+  #clock-icon img, #like-icon img {
+    margin-right: 5px; /* Adjust margin as needed to create space between image and span */
+   
+  }
+  #like-icon img{
+    margin-top:-2px;
+    
+  }
+  .icon-img{
+    width:22.5px;
+    height:23.5px;
+  }
+  .favorite {
+    color: orange; 
+  }
+  .orange-love{
+    width:22.5px;
+    height:20px;
+    
+  }
+  .love-image{
+    margin-left: 92%;
+    position: absolute;
+    top: 1px;
+    border: 3px white solid;
+    background: white;
+  }

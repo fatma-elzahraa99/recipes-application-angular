@@ -1,0 +1,35 @@
+
+<div class="recipe-grid">
+    <div class="recipe-card" *ngFor="let recipe of favoriteRecipes">
+       <div>
+    
+       </div>
+       <a [routerLink]="['/recipe-details', { recipeId: recipe.recipeId }]"> 
+        <img class="recipe-image" [src]="recipe.recipeImage" alt="{{ recipe.recipeTitle }}">
+       </a>
+       
+       <div class="love-image"  [ngClass]="{'favorite': isFavoriteImages[recipe.recipeId]}">
+          
+          <img class="orange-love"  src="assets/images/love-orange.png" alt="Orange Heart Icon">
+        </div>
+    
+        
+     
+        
+        <h2 id="recipe-title">{{ recipe.recipeTitle}}</h2>  
+        <p id="recipe-description"[innerHTML]="recipe.recipeDescription"></p>
+        
+        <hr id="separator">
+     <div class="container">
+        <div id="clock-icon"> <img class="icon-img" src="assets/images/clock-icon.png"> <span style="color: #f08547;">{{recipe.recipeTime}} mins</span></div> 
+        <div id="like-icon"><img  class="icon-img" src="assets/images/like-icon.png"><span style="color: #f08547;">{{recipe.recipeLikes}}</span> </div>
+     </div>
+    
+      </div>
+    </div>
+    
+
+
+   
+    
+    

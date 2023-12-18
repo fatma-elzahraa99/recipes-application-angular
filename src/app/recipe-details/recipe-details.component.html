@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+      <h2 class="col-md-12"></h2>
+  
+      <div class="col-md-6">
+        <img class="recipeDetails-image" [src]="recipeInfo.image" alt="{{ recipeInfo.title }}">
+      </div>
+  
+      <div class="col-md-6">
+        <h2 id="recipe-title">{{ recipeInfo.title}}</h2>  <!-- To add all properties needed -->
+        <p id="recipe-description"[innerHTML]="recipeInfo.summary"></p>
+        <h2 id="recipe-title">Ingredients</h2>
+        <div class="ingredient-container">
+          <div *ngFor="let ingredient of recipeInfo.extendedIngredients" class="ingredient-item" >
+            <div> {{ingredient.name}}</div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<div class="instructions">
+  <span>Instructions</span>
+  <ol>
+    <li *ngFor="let instruction of recipeInfo.instructions.split('.')">
+    <ng-container *ngIf="instruction.trim() != '' "> {{ instruction.trim() }}</ng-container>
+    </li>
+  </ol>
+</div>
+
+  

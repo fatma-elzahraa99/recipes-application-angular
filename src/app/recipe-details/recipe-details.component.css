@@ -1,0 +1,30 @@
+.ingredient-container {
+    /* display: flex;
+    
+    padding: 5px; */
+    display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 7px;
+  }
+  
+  .ingredient-item {
+    border: 2px solid orange;
+    padding: 7px;
+    margin-right: 10px;
+    background-color: orange;
+    border-radius: 12%;
+    color: white;
+    height: fit-content;
+    white-space: nowrap;
+    font-style: oblique;
+    font-weight: bold;
+  }
+  .instructions{
+    margin-left:3% ;
+    font-family: Cursive;
+  }
+  .recipeDetails-image{
+    height: 482px;
+    width: 697px;
+    margin-left: -66px;
+  }

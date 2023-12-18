@@ -1,0 +1,31 @@
+
+<div class="recipe-grid">
+<div class="recipe-card" *ngFor="let recipe of recipes">
+   <div>
+
+   </div>
+   <a [routerLink]="['/recipe-details', { recipeId: recipe.id }]"> 
+    <img class="recipe-image" [src]="recipe.image" alt="{{ recipe.title }}">
+   </a>
+   <!-- Repeat this block for each love-image -->
+   <div class="love-image" (click)="toggleFavorite(recipe.id)" [ngClass]="{'favorite': isFavoriteImages[recipe.id]}">
+      <img *ngIf="!isFavoriteImages[recipe.id]" src="assets/images/heart.png" alt="Heart Icon">
+      <img class="orange-love" *ngIf="isFavoriteImages[recipe.id]" src="assets/images/love-orange.png" alt="Orange Heart Icon">
+    </div>
+
+    
+ 
+    
+    <h2 id="recipe-title">{{ recipe.title}}</h2>  <!-- To add all properties needed -->
+    <p id="recipe-description"[innerHTML]="recipeDictionary[recipe.id]?.recipeDescription"></p>
+    
+    <hr id="separator">
+ <div class="container">
+    <div id="clock-icon"> <img class="icon-img" src="assets/images/clock-icon.png"> <span style="color: #f08547;">{{recipeDictionary[recipe.id]?.recipeTime}} mins</span></div> 
+    <div id="like-icon"><img  class="icon-img" src="assets/images/like-icon.png"><span style="color: #f08547;">{{recipeDictionary[recipe.id]?.recipeLikes}}</span> </div>
+ </div>
+
+  </div>
+</div>
+
+
